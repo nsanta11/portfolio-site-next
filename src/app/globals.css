@@ -17,6 +17,11 @@ body {
 }
 
 body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
@@ -38,5 +43,24 @@ a {
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+}
+
+
+/* Loading Styles */
+/* globals.css or module CSS */
+.loader {
+  width: 60px;
+  height: 60px;
+  border: 6px solid white;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }
