@@ -12,6 +12,18 @@ export default function RecentProjects() {
         <div className="card-wrap">
           <div className="card">
             <a
+              href="https://lagoon.parentsempowered.org/"
+              className="card__image"
+              style={{ backgroundImage: 'url("/img/parentsempowered_lagoon.png")' }}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="caption">VISIT WEBSITE</span>
+            </a>
+            <p className="card__title">Parents Empowered: Lagoon Park</p>
+          </div>
+          <div className="card">
+            <a
               href="https://valentinesday.noabuse.org/"
               className="card__image"
               style={{ backgroundImage: 'url("/img/no-abuse.png")' }}
@@ -73,19 +85,7 @@ export default function RecentProjects() {
             </button>
             <p className="card__title">Bally Sports Short Boys</p>
           </div>
-  
-          <div className="card">
-            <a
-              href="https://knowyourscript.org/progress/"
-              className="card__image"
-              style={{ backgroundImage: 'url("/img/knowyourscript.png")' }}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="caption">VISIT WEBSITE</span>
-            </a>
-            <p className="card__title">Know Your Script</p>
-          </div>
+
         </div>
   
         <div id="videoModal" className="modal">
