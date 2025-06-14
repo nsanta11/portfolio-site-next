@@ -23,7 +23,7 @@ export function useContactForm() {
 
     tl.fromTo(
       "#contact-me",
-      { x: "-50%", opacity: 0 },
+      { x: "-10%", opacity: 0 },
       { x: "0%", opacity: 1, duration: 1, ease: "power2.out" }
     );    
   
