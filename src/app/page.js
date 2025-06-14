@@ -10,7 +10,7 @@ import WebAnimation from "@/components/WebAnimation";
 export default function Home() {
   return (
     <>
-      <main className="loading">
+      <main>
         <HeroSection></HeroSection>
 
         <CoderAnimation></CoderAnimation>

@@ -1,7 +1,6 @@
 // app/contact/page.js
 'use client';
 
-import { useRef, useState } from 'react';
 import { useContactForm } from "@/hooks/useContactForm";
 import emailjs from '@emailjs/browser';
 import '@/styles/base.css';

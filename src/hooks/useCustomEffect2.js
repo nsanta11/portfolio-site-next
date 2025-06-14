@@ -5,10 +5,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
-export function useCustomEffect2() {
+export function useCustomEffect2(svgRef) {
   useEffect(() => {
     const contentElement = document.querySelector(".web-dev");
-    if (!contentElement) return;
+    if (!contentElement || !svgRef.current) {
+      console.warn("Missing .coder or svgRef.current");
+      return;
+    }
 
     const clipPath = contentElement.querySelectorAll("svg clipPath");
     const poster = contentElement.querySelectorAll(".poster");
@@ -85,5 +88,5 @@ export function useCustomEffect2() {
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
-  }, []);
+  }, [svgRef]);
 }

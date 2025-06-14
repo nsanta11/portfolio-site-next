@@ -21,14 +21,12 @@ export function useContactForm() {
       },
     });
 
-    tl.from("#contact-me", {
-      x: -100,
-      opacity: 0,
-      visibility: "visible", 
-      duration: 1,
-      ease: "power2.out",
-    });
-
+    tl.fromTo(
+      "#contact-me",
+      { x: "-50%", opacity: 0 },
+      { x: "0%", opacity: 1, duration: 1, ease: "power2.out" }
+    );    
+  
     return () => {
       tl.scrollTrigger?.kill();
       tl.kill();

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
@@ -7,10 +7,22 @@ import { TextPlugin } from "gsap/TextPlugin";
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, TextPlugin);
 
 export function useIntroAnimation(titleRef, buttonRef, typewriterRef) {
-  useEffect(() => {
-    if (!titleRef.current || !buttonRef.current || !typewriterRef.current) return;
+  const hasAnimatedRef = useRef(false); // <-- Ref to prevent duplicate run
 
-    // Intro animation
+  useEffect(() => {
+    // Prevent double runs in Strict Mode, but allow rerun on remount
+    if (
+      hasAnimatedRef.current ||
+      !titleRef.current ||
+      !buttonRef.current ||
+      !typewriterRef.current
+    ) {
+      return;
+    }
+
+    hasAnimatedRef.current = true; // Set flag
+
+    // Animate title
     gsap.to(titleRef.current, {
       duration: 1,
       scale: 1,
@@ -19,6 +31,7 @@ export function useIntroAnimation(titleRef, buttonRef, typewriterRef) {
       delay: 0.2,
     });
 
+    // Animate button
     gsap.to(buttonRef.current, {
       duration: 0.5,
       scale: 1,
@@ -27,36 +40,34 @@ export function useIntroAnimation(titleRef, buttonRef, typewriterRef) {
       delay: 2.5,
     });
 
-    // Typewriter effect
-    const words = ["", "Web Developer,", " Designer,", " World Traveler"];
+    // Typewriter animation
     const typewriter = typewriterRef.current;
+    typewriter.innerHTML = ""; // clear on mount
 
-    function addWord(index) {
-      if (index >= words.length) return;
+    const words = ["Web Developer,", "Designer,", "World Traveler"];
+    const tl = gsap.timeline({ delay: 0.8 }); // sync with title animation
 
-      const wordSpan = document.createElement("span");
-      wordSpan.textContent = (index === 0 ? "" : " ") + words[index];
-      wordSpan.style.opacity = 0;
+    words.forEach((word, i) => {
+      const span = document.createElement("span");
+      span.textContent = (i > 0 ? " " : "") + word;
+      span.style.opacity = 0;
+      typewriter.appendChild(span);
 
-      if (index === words.length - 1) {
-        wordSpan.classList.add("break-before");
-      }
+      tl.to(
+        span,
+        {
+          opacity: 1,
+          duration: 0.6,
+          ease: "power1.out",
+        },
+        "+=0.01"
+      ); // slight delay between entries
+    });
 
-      typewriter.appendChild(wordSpan);
+    // Reset styles before re-animating
+    gsap.set(".card", { clearProps: "all" });
 
-      gsap.to(wordSpan, {
-        opacity: 1,
-        duration: 1.2,
-        ease: "power1.out",
-        delay: 0.5,
-      });
-
-      setTimeout(() => addWord(index + 1), 500);
-    }
-
-    addWord(0);
-
-    // -- STAGGERED .card animations --
+    // Card animations
     const cards = gsap.utils.toArray(".card");
     cards.forEach((card, index) => {
       gsap.from(card, {
@@ -64,7 +75,6 @@ export function useIntroAnimation(titleRef, buttonRef, typewriterRef) {
           trigger: card,
           start: "top 90%",
           toggleActions: "play none none none",
-          // markers: true, // Uncomment to debug ScrollTrigger positions
         },
         y: 30,
         opacity: 0,
@@ -74,13 +84,16 @@ export function useIntroAnimation(titleRef, buttonRef, typewriterRef) {
       });
     });
 
-    // -- ABOUT ME TIMELINE --
+    // Reset styles before re-animating
+    gsap.set("#about-me", { clearProps: "all" });
+    gsap.set(".profile-img", { clearProps: "all" });
+
+    // About Me animation
     const aboutMeTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: "#about-me",
         start: "top 80%",
         toggleActions: "play none none none",
-        // markers: true, // Uncomment to debug
       },
     });
 
@@ -103,10 +116,11 @@ export function useIntroAnimation(titleRef, buttonRef, typewriterRef) {
         "-=0.6"
       );
 
-    // Cleanup function
+    // Cleanup on unmount
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       aboutMeTimeline.kill();
+      hasAnimatedRef.current = false; // Reset so it runs again on remount
     };
   }, [titleRef, buttonRef, typewriterRef]);
 }

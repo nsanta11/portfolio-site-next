@@ -5,11 +5,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const useCustomEffect1 = () => {
+export const useCustomEffect1 = (svgRef) => {
   useEffect(() => {
     const contentElement = document.querySelector(".coder");
-    if (!contentElement) {
-      console.warn("useCustomEffect1: .content element not found.");
+    if (!contentElement || !svgRef.current) {
+      console.warn("Missing .coder or svgRef.current");
       return;
     }
 
@@ -40,7 +40,8 @@ export const useCustomEffect1 = () => {
         trigger: poster,
         start: "top bottom",
         end: "bottom top+=70%",
-        once: true,
+        // once: true,
+        toggleActions: "play reverse play reverse",
         scrub: 2,
         onUpdate: (scrollTrigger) => {
           const progress = scrollTrigger.progress;
@@ -82,5 +83,5 @@ export const useCustomEffect1 = () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
       timeline.kill();
     };
-  }, []);
+  }, [svgRef]);
 };
