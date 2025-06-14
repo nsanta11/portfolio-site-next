@@ -1,30 +1,6 @@
 {
   "version": 4,
   "routes": {
-    "/contact": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "Next-Action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/contact",
-      "dataRoute": "/contact.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
     "/": {
       "experimentalBypassFor": [
         {
@@ -48,13 +24,37 @@
         "x-next-revalidated-tags",
         "x-next-revalidate-tag-token"
       ]
+    },
+    "/contact": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "Next-Action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/contact",
+      "dataRoute": "/contact.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
     }
   },
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "0137ac05134800bd4f614da387cd8395",
-    "previewModeSigningKey": "0e5ebd2e1a2dc701b8f1c3ea7d34c43ce4f87bf667006dfec8111b3195d59412",
-    "previewModeEncryptionKey": "5665ffe2328fc524c3bc1473ed3d1a04b1c86fcfa698c36ad20f005b14c40b77"
+    "previewModeId": "f045d0454f4a29fa8e2bdc35cbe9ce0c",
+    "previewModeSigningKey": "7d217e8be226c5ea2c4528d194d2b1c179d4b83f6fe0ce6172f4f01e43e4f995",
+    "previewModeEncryptionKey": "104a0065be8e5689b4fa8af52e6c2aba749a05b0b049861d3a1d333554da4dcb"
   }
 }

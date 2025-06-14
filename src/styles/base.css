@@ -96,10 +96,13 @@ h2 {
 	font-style: normal;
 }
 
+#about-me {
+	margin: 0 0 100px 0;
+}
+
 #about-me,
 #my-work {
 	scroll-margin-top: 125px;
-	/* or however tall your header is */
 }
 
 /* ---------------------- */
@@ -712,8 +715,9 @@ textarea {
 /* -------------------------------- */
 @media screen and (max-width: 1200px) {
 
-	.poster--half {
-		height: 360px;
+	.card-wrap {
+		grid-gap: 2rem;
+		grid-template-columns: repeat(2, 350px);
 	}
 
 	.flex-container {
@@ -724,75 +728,14 @@ textarea {
 		margin: 0 auto 50px auto;
 	}
 
-	.card-wrap {
-		grid-gap: 2rem;
-		grid-template-columns: repeat(2, 350px);
+	.poster--half {
+		height: 360px;
 	}
+	
 }
 
 
 @media screen and (max-width: 768px) {
-
-	h2 {
-		font-size: 28px;
-	}
-
-	label {
-		font-size: 12px;
-	}
-
-	header.frame {
-		padding: 24px;
-	}
-
-	.title {
-		min-height: 320px;
-		padding: 24px;
-	}
-
-	.title p {
-		font-size: 22px;
-	}
-
-	.frame {
-		grid-template-columns: 1fr;
-		grid-template-areas: none;
-	}
-
-	#typewriter span.break-before {
-		display: block;
-	}
-
-	.text-container {
-		margin: 0 30px 30px 30px;
-	}
-
-	.text-container p {
-		font-size: 14px;
-		padding: 0;
-	}
-
-	.layout-wrapper {
-		padding: 0;
-		max-width: 500px;
-		margin: 0 auto;
-	}
-
-	.poster--half {
-		height: 180px;
-	}
-
-	.image-container img {
-		top: -150px;
-		clip-path: inset(0 0 220px 0);
-		left: -116px;
-	}
-
-	.flex-container {
-		flex-direction: column;
-		padding: 0;
-		border-radius: 0;
-	}
 
 	.card-wrap {
 		grid-template-columns: 1fr;
@@ -805,6 +748,45 @@ textarea {
 		width: 100%;
 	}
 
+	.content--more {
+		margin-top: 50px;
+	}
+
+	.flex-container {
+		flex-direction: column;
+		padding: 0;
+		border-radius: 0;
+	}
+
+	.frame {
+		grid-template-columns: 1fr;
+		grid-template-areas: none;
+	}
+
+	h2 {
+		font-size: 28px;
+	}
+
+	header.frame {
+		padding: 24px;
+	}
+
+	.image-container img {
+		top: -150px;
+		clip-path: inset(0 0 220px 0);
+		left: -116px;
+	}
+
+	label {
+		font-size: 12px;
+	}
+
+	.layout-wrapper {
+		padding: 0;
+		max-width: 500px;
+		margin: 0 auto;
+	}
+
 	.modal-content {
 		width: 100%;
 	}
@@ -813,6 +795,32 @@ textarea {
 		font-size: 24px;
 		line-height: 24px;
 		padding-top: 30px;
+	}
+
+	.poster--half {
+		height: 180px;
+	}
+
+	.text-container {
+		margin: 0 30px 30px 30px;
+	}
+
+	.text-container p {
+		font-size: 14px;
+		padding: 0;
+	}
+
+	.title {
+		min-height: 320px;
+		padding: 24px;
+	}
+
+	.title p {
+		font-size: 22px;
+	}
+
+	#typewriter span.break-before {
+		display: block;
 	}
 
 }
