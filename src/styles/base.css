@@ -225,7 +225,6 @@ header.frame {
 }
 
 .typewriter-container {
-	white-space: nowrap;
 	overflow: hidden;
 	width: fit-content;
 }
@@ -731,7 +730,7 @@ textarea {
 	.poster--half {
 		height: 360px;
 	}
-	
+
 }
 
 
@@ -761,6 +760,10 @@ textarea {
 	.frame {
 		grid-template-columns: 1fr;
 		grid-template-areas: none;
+	}
+
+	.frame__title {
+		font-size: 60px;
 	}
 
 	h2 {
@@ -816,7 +819,7 @@ textarea {
 	}
 
 	.title p {
-		font-size: 22px;
+		font-size: 20px;
 	}
 
 	#typewriter span.break-before {
