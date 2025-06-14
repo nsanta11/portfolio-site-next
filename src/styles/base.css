@@ -771,7 +771,7 @@ textarea {
 	}
 
 	header.frame {
-		padding: 24px 30px 24px 24px;
+		padding: 24px;
 	}
 
 	.image-container img {
@@ -815,7 +815,7 @@ textarea {
 
 	.title {
 		min-height: 320px;
-		padding: 24px;
+		padding: 24px 30px 24px 24px;
 	}
 
 	.title p {
