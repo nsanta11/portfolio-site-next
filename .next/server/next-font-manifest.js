@@ -1,1 +1,0 @@
-self.__NEXT_FONT_MANIFEST='{"pages":{},"app":{"/Users/nicolesa/Local Sites/nic-site/ns-next/src/app/layout":["static/media/26d0ba92e140f0dc-s.p.woff2","static/media/4f05ba3a6752a328-s.p.woff2"]},"appUsingSizeAdjust":true,"pagesUsingSizeAdjust":false}';
