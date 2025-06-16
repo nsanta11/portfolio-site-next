@@ -2,7 +2,7 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-// import PageLoader from '@/components/Loaders/PageLoader';
+import Script from "next/script";
 import Loader from "@/components/Loader";
 import { Instrument_Sans, Jost, Montserrat, Sixtyfour } from "next/font/google";
 import "../styles/base.css";
@@ -42,6 +42,19 @@ export default function RootLayout({ children }) {
           precedence="default"
         />
       </head>
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-YR53C0DB96"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-YR53C0DB96');
+        `}
+      </Script>
       <body className="loading">
         <div
           id="initial-loader"
