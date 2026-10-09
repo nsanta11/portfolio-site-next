@@ -11,8 +11,7 @@ export default function ContactSection() {
     const { formRef, formStatus, isSending, handleSubmit } = useContactForm();
 
   return (
-    <main className="about-card contact-page">
-
+    <div className="about-card contact-page">
       <div className="layout-wrapper">
         <div className="flex-container contact-card" id="contact-me">
           <div className="image-container">
@@ -38,6 +37,6 @@ export default function ContactSection() {
           </section>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

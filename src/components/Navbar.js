@@ -1,23 +1,27 @@
 // components/Navbar.js
+'use client';
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => e.key === 'Escape' && setOpen(false);
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [open]);
+
   return (
-    <header className="frame">
-      <div className="nav-links">
-        <Link className="scroll-link" href="/#about-me">
-          About Me
-        </Link>
-        <Link className="scroll-link" href="/#my-work">
-          My Work
-        </Link>
-        <Link href="/contact">Contact</Link>
-      </div>
+    <header className={`frame${open ? ' nav-open' : ''}`}>
       <div className="ns-logo">
-        <Link href="/">
+        <Link href="/" onClick={close}>
           <img
             className="logo"
-            src="/img/ns_white.png"
+            src="/img/ns_cream.png"
             alt="Nicole Santarsiero logo"
           />
         </Link>
@@ -29,6 +33,29 @@ export default function Navbar() {
           <i className="devicon-linkedin-plain colored"></i>
         </Link>
       </div>
+      <button
+        type="button"
+        className="nav-toggle"
+        aria-label={open ? 'Close menu' : 'Open menu'}
+        aria-expanded={open}
+        aria-controls="primary-nav"
+        onClick={() => setOpen((o) => !o)}
+      >
+        <span className="nav-toggle__bar"></span>
+        <span className="nav-toggle__bar"></span>
+        <span className="nav-toggle__bar"></span>
+      </button>
+      <nav id="primary-nav" className="nav-links">
+        <Link className="scroll-link" href="/#about-me" onClick={close}>
+          About Me
+        </Link>
+        <Link className="scroll-link" href="/#my-work" onClick={close}>
+          My Work
+        </Link>
+        <Link href="/contact" onClick={close}>
+          Contact
+        </Link>
+      </nav>
     </header>
   );
 }
