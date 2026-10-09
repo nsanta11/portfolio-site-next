@@ -36,6 +36,7 @@ export function useContactForm() {
   // Submit handler
   const handleSubmit = (e) => {
     e.preventDefault();
+    document.activeElement?.blur();
     setIsSending(true);
     setFormStatus("Sending...");
 
