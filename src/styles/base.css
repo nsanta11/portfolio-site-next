@@ -2,7 +2,7 @@
 *::after,
 *::before {
 	box-sizing: border-box;
-} 
+}
 
 :root {
 	font-size: 16px;
@@ -38,9 +38,8 @@ body {
 }
 
 main {
-	margin: 80px 0 180px 0;
+	margin: 80px 0 0 0;
 }
-
 
 a {
 	text-decoration: none;
@@ -51,12 +50,6 @@ a {
 
 a:hover {
 	color: var(--color-link-hover);
-	outline: none;
-	cursor: pointer;
-}
-
-a:focus {
-	outline: none;
 }
 
 a:focus-visible {
@@ -127,7 +120,7 @@ header.frame {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-    align-items: center;
+	align-items: center;
 }
 
 .nav-links a {
@@ -176,10 +169,6 @@ header.frame {
 	max-width: 60px;
 }
 
-.ns-logo .logo {
-	max-width: 60px;
-}
-
 .ns-logo i {
 	font-size: 37px;
 	margin-left: 8px;
@@ -197,10 +186,8 @@ header.frame {
 	grid-column-gap: 32px;
 	pointer-events: none;
 	justify-items: start;
-	grid-template-columns: 100%;
 	align-items: start;
 	justify-content: start;
-	grid-template-areas: 'title' 'prev' 'back' 'sub' 'sponsor';
 	grid-template-columns: auto auto auto 1fr;
 	grid-template-areas: 'prev back sub sponsor' 'title title title title';
 }
@@ -274,13 +261,12 @@ header.frame {
 	display: inline;
 }
 
-
 /* ------------------------ */
 /* --- ABOUT ME SECTION --- */
 /* ------------------------ */
 .layout-wrapper {
 	padding: 120px 32px 32px 32px;
-	margin-bottom: 150px;
+	margin: 0 0 180px 0;
 }
 
 .left {
@@ -296,34 +282,32 @@ header.frame {
 }
 
 .image-container {
-    width: 270px;
-    height: 380px;
-    position: relative;
-    flex-shrink: 0;
-    overflow: hidden;
+	width: 270px;
+	height: 380px;
+	position: relative;
+	flex-shrink: 0;
+	overflow: hidden;
 }
 
 .image-container img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    object-fit: cover;
-    object-position: center top;
-    clip-path: none;
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	object-fit: cover;
+	object-position: center top;
+	clip-path: none;
 }
 
 .about-card,
 .contact-card {
 	position: relative;
-	margin-top: -100px;
 	background-color: #000000;
 	color: #000000;
 	overflow: hidden;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 1);
-	opacity: 0,
 }
 
 .about-card::before {
@@ -334,15 +318,6 @@ header.frame {
 		linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
 		url('/img/bckground_small.jpg') center / cover;
 	filter: blur(20px);
-}
-
-.blur::before {
-	content: "";
-	position: absolute;
-	inset: 0;
-	background: rgba(0, 0, 0, 0.2);
-	backdrop-filter: blur(10px);
-	z-index: 0;
 }
 
 .about-card>* {
@@ -387,22 +362,10 @@ header.frame {
 	width: 100%;
 }
 
-.content--flex {
-	display: flex;
-	justify-content: center;
-}
-
 .content--more {
-	margin-top: 150px;
+	margin: 150px 0;
 }
 
-.content--text {
-	place-items: initial;
-	align-content: center;
-	max-width: 950px;
-	padding: 0 10vw;
-	margin: 0 0 0 auto;
-}
 /* 
 .content>h4 {
 	background-color: #f3ec78;
@@ -421,11 +384,6 @@ header.frame {
 	font-size: 18px;
 	color: #ffffff;
 	line-height: 1.5;
-}
-
-.content__title {
-	font-size: 32px;
-	font-weight: normal;
 }
 
 .poster {
@@ -454,32 +412,8 @@ header.frame {
 	font-weight: 400;
 }
 
-.font-3 {
-    font-family: "macula-solid", sans-serif;
-    font-weight: 500;
-}
-
-.font-4 {
-	font-family: "Montserrat", sans-serif;
-	font-optical-sizing: auto;
-	font-weight: 800;
-	font-style: normal;
-}
-
-.size-1 {
-	font-size: 70vw;
-}
-
-.size-2 {
-	font-size: 50vw;
-}
-
 .size-3 {
 	font-size: 30vw;
-}
-
-.size-4 {
-	font-size: 20vh;
 }
 
 .line-1 {
@@ -500,7 +434,6 @@ svg {
 svg text {
 	line-height: 4;
 }
-
 
 /* ------------------------- */
 /* --- PORTFOLIO SECTION --- */
@@ -546,7 +479,6 @@ svg text {
 	pointer-events: none;
 	text-align: center;
 	padding: 16px;
-	box-shadow: 6px 2px 20px rgba(255, 255, 255, 0.3);
 	box-shadow: 0 8px 16px rgba(0, 0, 0, 1);
 	text-transform: capitalize;
 }
@@ -559,10 +491,6 @@ svg text {
 	opacity: 1;
 }
 
-.caption:hover {
-	border: 2px solid red;
-}
-
 .card__title {
 	font-weight: normal;
 	font-size: 20px;
@@ -571,11 +499,11 @@ svg text {
 
 .card p {
 	font-size: 22px;
-    min-height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+	min-height: 80px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
 	line-height: 1.05;
 }
 
@@ -593,10 +521,6 @@ svg text {
 	overflow: auto;
 	background-color: rgba(0, 0, 0, 0.85);
 	pointer-events: none;
-}
-
-video {
-	max-height: 566px;
 }
 
 .modal.show {
@@ -640,10 +564,9 @@ video {
 
 video {
 	width: 100%;
+	max-height: 566px;
 	border-radius: 8px;
 }
-
-
 
 /* ----------------------- */
 /* --- CONTACT ME PAGE --- */
@@ -706,7 +629,6 @@ textarea::placeholder {
 textarea {
 	height: 100px;
 }
-
 
 #form-status {
 	font-family: Arial, Helvetica, sans-serif;
@@ -800,25 +722,28 @@ textarea {
 
 }
 
-
 @media screen and (max-width: 768px) {
+
+	.content {
+		margin: 20px auto 80px 0;
+	}
 
 	.card-wrap {
 		grid-template-columns: 1fr;
 		/* margin: 40px 16px 0 16px; */
 		width: 100%;
-        padding: 0 32px;
-	}
-
-	.contact-card {
-		padding: 0 24px;
+		padding: 0 32px;
 	}
 
 	.contact-section {
 		margin: 0;
 		padding: 0 0 24px 0;
 		width: 100%;
-		max-width: 550px;
+		max-width: 360px;
+	}
+
+	.contact-card {
+		padding: 0 24px 32px 24px;
 	}
 
 	.content--more {
@@ -828,7 +753,6 @@ textarea {
 	.flex-container {
 		flex-direction: column;
 		border-radius: 0;
-		margin: 100px 0 0 0;
 		gap: 12px;
 	}
 
@@ -880,7 +804,7 @@ textarea {
 
 	.nav-links a {
 		margin: 0;
-		font-size: 18px;	
+		font-size: 18px;
 		color: var(--color-text);
 	}
 
@@ -891,16 +815,6 @@ textarea {
 
 	.image-container {
 		width: 100%;
-		max-width: 360px;
-		height: 500px;
-		position: relative;
-		flex-shrink: 0;
-		overflow: hidden;
-		margin: 24px 0;
-	}
-
-	.about-card .image-container {
-		max-width: 360px;
 		height: 380px;
 		margin: 32px 0 0 0;
 	}
