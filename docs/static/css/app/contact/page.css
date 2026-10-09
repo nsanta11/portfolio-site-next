@@ -1,3 +1,6 @@
+/*!*****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./src/styles/base.css ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************/
 *,
 *::after,
 *::before {
@@ -79,23 +82,23 @@ h2 {
 
 @font-face {
 	font-family: 'blackoutregular';
-	src: url('../fonts/blackout-webfont.woff2') format('woff2'),
-		url('../fonts/blackout-webfont.woff') format('woff');
+	src: url(/_next/static/media/blackout-webfont.36521ec7.woff2) format('woff2'),
+		url(/_next/static/media/blackout-webfont.c7458f61.woff) format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'h19a_lunaluna';
-	src: url('../fonts/h19a-luna-webfont.woff2') format('woff2'),
-		url('../fonts/h19a-luna-webfont.woff') format('woff');
+	src: url(/_next/static/media/h19a-luna-webfont.c91c8fa8.woff2) format('woff2'),
+		url(/_next/static/media/h19a-luna-webfont.b2c68d5d.woff) format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'macula-solid';
-	src: url('../fonts/macula-solid.otf') format('opentype');
+	src: url(/_next/static/media/macula-solid.9a3d4a32.otf) format('opentype');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -267,6 +270,7 @@ header.frame {
 
 .typewriter-container {
 	overflow: hidden;
+	width: -moz-fit-content;
 	width: fit-content;
 }
 
@@ -312,7 +316,8 @@ header.frame {
     left: 0;
     object-fit: cover;
     object-position: center top;
-    clip-path: none;
+    -webkit-clip-path: none;
+            clip-path: none;
 }
 
 .about-card,
@@ -340,7 +345,8 @@ header.frame {
 	position: absolute;
 	inset: 0;
 	background: rgba(0, 0, 0, 0.2);
-	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	        backdrop-filter: blur(10px);
 	z-index: 0;
 }
 
@@ -350,7 +356,7 @@ header.frame {
 }
 
 .text-container {
-	flex: 2;
+	flex: 2 1;
 	/* margin: 16px 0 */
 }
 
