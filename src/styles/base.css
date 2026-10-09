@@ -699,8 +699,9 @@ textarea {
 
 #form-status {
 	font-family: Arial, Helvetica, sans-serif;
+	color: var(--color-text);
 	text-align: center;
-	margin-top: 10px;
+	margin-top: 12px;
 }
 
 /* ------------------------ */
