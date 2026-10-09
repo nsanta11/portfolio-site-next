@@ -39,7 +39,7 @@ body {
 }
 
 main {
-	margin: 120px 0;
+	margin: 120px 0 180px 0;
 }
 
 
@@ -806,7 +806,6 @@ textarea {
 
 	.layout-wrapper {
 		padding: 0;
-		max-width: 500px;
 		margin: 0 auto;
 	}
 
