@@ -2,106 +2,42 @@
 "use client";
 import { useState } from "react";
 import VideoModal from "./VideoModal";
+import projects from "@/data/recent-projects.json";
 
 export default function RecentProjects() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    return (
-      <section className="content content--more">
-        <h2 id="my-work">Recent Projects</h2>
-        <div className="card-wrap">
-          <div className="card">
-            <a
-              href="https://lagoon.parentsempowered.org/"
-              className="card__image"
-              style={{ backgroundImage: 'url("/img/parentsempowered_lagoon.png")' }}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="caption">VISIT WEBSITE</span>
-            </a>
-            <p className="card__title">Parents Empowered: Lagoon Park</p>
+  return (
+    <section className="content content--more">
+      <h2 id="my-work">Recent Projects</h2>
+      <div className="card-wrap">
+        {projects.map((project) => (
+          <div className="card" key={project.title}>
+            {project.opensModal ? (
+              <button
+                className="card__image openModal"
+                id="openModalBtn"
+                style={{ backgroundImage: `url("${project.image}")` }}
+                onClick={() => setIsModalOpen(true)}
+              >
+                <span className="caption">{project.caption}</span>
+              </button>
+            ) : (
+              <a
+                href={project.href}
+                className="card__image"
+                style={{ backgroundImage: `url("${project.image}")` }}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="caption">{project.caption}</span>
+              </a>
+            )}
+            <p className="card__title">{project.title}</p>
           </div>
-          <div className="card">
-            <a
-              href="https://valentinesday.noabuse.org/"
-              className="card__image"
-              style={{ backgroundImage: 'url("/img/no-abuse.png")' }}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="caption">VISIT WEBSITE</span>
-            </a>
-            <p className="card__title">Loveless Greetings</p>
-          </div>
-  
-          <div className="card">
-            <a
-              href="https://rrpartners.com/"
-              className="card__image"
-              style={{ backgroundImage: 'url("/img/rrpartners.png")' }}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="caption">VISIT WEBSITE</span>
-            </a>
-            <p className="card__title">R&R Partners</p>
-          </div>
-  
-          <div className="card">
-            <a
-              href="https://businessjets.boeing.com/737-max/#world-map"
-              className="card__image"
-              style={{ backgroundImage: 'url("/img/bbj_rangefinder.png")' }}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="caption">VISIT WEBSITE</span>
-            </a>
-            <p className="card__title">Boeing Business Jets Range Map Component</p>
-          </div>
-  
-          <div className="card">
-            <a
-              href="https://businessjets.boeing.com/select/#select-configurator"
-              className="card__image"
-              style={{ backgroundImage: 'url("/img/bbj_configurator.png")' }}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="caption">VISIT WEBSITE</span>
-            </a>
-            <p className="card__title">Boeing Business Configurator Component</p>
-          </div>
-  
-          <div className="card">
-            <button
-              className="card__image openModal"
-              id="openModalBtn"
-              style={{ backgroundImage: 'url("/img/ballysports.png")' }}
-              onClick={() => setIsModalOpen(true)}
-            >
-              <span className="caption">OPEN WEBSITE DEMO</span>
-            </button>
-            <p className="card__title">Bally Sports Short Boys</p>
-          </div>
-
-        </div>
-  
-        <div id="videoModal" className="modal">
-          <div className="modal-content">
-            <span className="close-btn">&times;</span>
-            <h2 className="modal-headline">Bally Short Boys Campaign 2024 — Website</h2>
-            <div className="video-wrapper">
-              <video id="modalVideo" poster="/img/ballysports.png" controls>
-                <source src="/img/BallySports_ShortBoys.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </div>
-        </div>
-        <VideoModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      </section>
-    );
-  }
-  
+        ))}
+      </div>
+      <VideoModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+    </section>
+  );
+}

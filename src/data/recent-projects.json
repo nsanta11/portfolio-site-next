@@ -1,0 +1,56 @@
+[
+  {
+    "title": "RR Partners Foundation",
+    "href": "https://rrpartnersfoundation.org/",
+    "image": "/img/rr-foundation.jpg",
+    "caption": "VISIT WEBSITE"
+  },
+  {
+    "title": "Parents Empowered: No Bummer Summer",
+    "href": "https://summer.parentsempowered.org/",
+    "image": "/img/no-bummer.jpg",
+    "caption": "VISIT WEBSITE"
+  },
+  {
+    "title": "Parents Empowered: Every Step Counts",
+    "href": "https://nsanta11.github.io/every-step-counts/",
+    "image": "/img/every-step-counts.jpg",
+    "caption": "VISIT WEBSITE"
+  },
+  {
+    "title": "Parents Empowered: Lagoon Park",
+    "href": "https://lagoon.parentsempowered.org/",
+    "image": "/img/parentsempowered_lagoon.png",
+    "caption": "VISIT WEBSITE"
+  },
+  {
+    "title": "Loveless Greetings",
+    "href": "https://valentinesday.noabuse.org/",
+    "image": "/img/no-abuse.png",
+    "caption": "VISIT WEBSITE"
+  },
+  {
+    "title": "R&R Partners",
+    "href": "https://rrpartners.com/",
+    "image": "/img/rrpartners.png",
+    "caption": "VISIT WEBSITE"
+  },
+  {
+    "title": "Boeing Business Jets Range Map Component",
+    "href": "https://businessjets.boeing.com/737-max/#world-map",
+    "image": "/img/bbj_rangefinder.png",
+    "caption": "VISIT WEBSITE"
+  },
+  {
+    "title": "Boeing Business Configurator Component",
+    "href": "https://businessjets.boeing.com/select/#select-configurator",
+    "image": "/img/bbj_configurator.png",
+    "caption": "VISIT WEBSITE"
+  },
+  {
+    "title": "Bally Sports Short Boys",
+    "image": "/img/ballysports.png",
+    "caption": "OPEN WEBSITE DEMO",
+    "opensModal": true
+  }
+]

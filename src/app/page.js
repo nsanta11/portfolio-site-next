@@ -10,17 +10,13 @@ import WebAnimation from "@/components/WebAnimation";
 export default function Home() {
   return (
     <>
-      <main>
-        <HeroSection></HeroSection>
+      <HeroSection></HeroSection>
 
-        <CoderAnimation></CoderAnimation>
+      <CoderAnimation></CoderAnimation>
 
-        <AboutMe></AboutMe>
+      <AboutMe></AboutMe>
 
-        <WebAnimation></WebAnimation>
-
-        <RecentProjects></RecentProjects>
-      </main>
+      <RecentProjects></RecentProjects>
     </>
   );
 }

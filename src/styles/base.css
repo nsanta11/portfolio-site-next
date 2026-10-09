@@ -9,7 +9,8 @@
 	--color-text: #f3f3f3;
 	--color-bg: #000000;
 	--color-link: #f3f3f3;
-	--color-link-hover: rgb(255, 0, 111);
+	/* --color-link-hover: rgb(255, 0, 111); */
+	--color-link-hover: #64eda6;
 	--page-padding: 2rem 3rem;
 }
 
@@ -27,7 +28,11 @@ body {
 body {
 	margin: 0;
 	color: var(--color-text);
-	background: linear-gradient(#000000, #1c1c1c);
+	background: linear-gradient(
+		#000000 0%,
+		#000000 50%,
+		#2b1c45
+	);
 	font-family: "oculi-display", serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -212,7 +217,7 @@ header.frame {
 }
 
 .title button:hover {
-	background-color: rgb(137, 245, 154);
+	background-color: #FF006F;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 	transition: background-color 0.75s ease;
 }
@@ -255,18 +260,23 @@ header.frame {
 }
 
 .image-container {
-	height: 300px;
-	width: 270px;
-	position: relative;
+    width: 270px;
+    height: 380px;
+    position: relative;
+    flex-shrink: 0;
+    overflow: hidden;
 }
 
-
 .image-container img {
-	position: absolute;
-	top: -160px;
-	left: -160px;
-	height: auto;
-	clip-path: inset(0 70px 0 0);
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    object-position: center top;
+    clip-path: none;
 }
 
 .about-card,
@@ -336,7 +346,7 @@ header.frame {
 /* --------------------------- */
 .content {
 	min-height: 60px;
-	margin: 60px auto 120px auto;
+	margin: 20px auto 180px auto;
 	display: grid;
 	place-items: center;
 	width: 100%;
@@ -394,7 +404,7 @@ header.frame {
 
 .poster--half {
 	/* height: 30vw; */
-	height: 400px;
+	height: 580px;
 }
 
 .poster__inner {
@@ -410,8 +420,8 @@ header.frame {
 }
 
 .font-3 {
-	font-family: "macula-solid", sans-serif;
-	font-weight: 500;
+    font-family: "macula-solid", sans-serif;
+    font-weight: 500;
 }
 
 .font-4 {
@@ -437,6 +447,12 @@ header.frame {
 	font-size: 20vh;
 }
 
+.line-1 {
+	transform: scaleY(2.5);
+	transform-box: fill-box;
+	transform-origin: center;
+}
+
 svg {
 	opacity: 0;
 	position: absolute;
@@ -447,7 +463,7 @@ svg {
 }
 
 svg text {
-	line-height: 1;
+	line-height: 4;
 }
 
 
@@ -753,7 +769,7 @@ textarea {
 
 	.flex-container {
 		flex-direction: column;
-		padding: 0;
+		padding: 60px 10px;
 		border-radius: 0;
 	}
 
@@ -774,10 +790,13 @@ textarea {
 		padding: 24px;
 	}
 
-	.image-container img {
-		top: -150px;
-		clip-path: inset(0 0 220px 0);
-		left: -116px;
+	.image-container,
+	.text-container {
+		width: 300px;
+	}
+
+	#about-me {
+		margin: 0;
 	}
 
 	label {

@@ -44,7 +44,7 @@ export function useIntroAnimation(titleRef, buttonRef, typewriterRef) {
     const typewriter = typewriterRef.current;
     typewriter.innerHTML = ""; // clear on mount
 
-    const words = ["Web Developer,", "Designer,", "World Traveler"];
+    const words = ["Developer,", "Designer,", "Digital Nomad"];
     const tl = gsap.timeline({ delay: 0.8 }); // sync with title animation
 
     words.forEach((word, i) => {
