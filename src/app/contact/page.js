@@ -20,13 +20,13 @@ export default function ContactSection() {
           <section className="contact-section">
             <h2>Contact Me</h2>
             <form ref={formRef} className="contact-form" onSubmit={handleSubmit}>
-              <label htmlFor="name">Your Name:</label>
+              <label htmlFor="name">Name:</label>
               <input type="text" id="name" name="name" required />
 
-              <label htmlFor="email">Your Email:</label>
+              <label htmlFor="email">Email:</label>
               <input type="email" id="email" name="email" required />
 
-              <label htmlFor="message">Your Message:</label>
+              <label htmlFor="message">Message:</label>
               <textarea id="message" name="message" required></textarea>
 
               <button className="send" type="submit" disabled={isSending}>
