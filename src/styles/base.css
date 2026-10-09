@@ -801,7 +801,7 @@ textarea {
 
 	.contact-section {
 		margin: 0;
-		padding-top: 0;
+		padding: 0 0 24px 0;
 		width: 100%;
 		max-width: 550px;
 	}
@@ -885,7 +885,6 @@ textarea {
 	}
 
 	.about-card .image-container {
-		width: calc(100% - 60px);
 		max-width: 360px;
 		height: 380px;
 		margin: 32px 0 0 0;
