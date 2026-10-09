@@ -1,0 +1,114 @@
+/* Halloween theme: corner web + dangling spider. Subtle, non-interactive. */
+.theme-halloween {
+	pointer-events: none;
+}
+
+/* Absolute (not fixed) so the web stays at the top of the page and scrolls
+   away; only the spider and its thread follow the viewport. */
+.theme-web {
+	position: absolute;
+	top: 80px;
+	right: 0;
+	width: 160px;
+	height: 160px;
+	z-index: 1001;
+	opacity: 0.35;
+	/* fade the strands out toward the web's outer edge */
+	-webkit-mask-image: radial-gradient(circle farthest-side at 100% 0, #000 20%, transparent 100%);
+	mask-image: radial-gradient(circle farthest-side at 100% 0, #000 20%, transparent 100%);
+}
+
+.theme-web path {
+	stroke: #f5f1df;
+	stroke-width: 1;
+	stroke-linecap: round;
+}
+
+/* Fixed to the viewport. JS sets --spider-y from the scroll position, so the
+   spider lowers itself on its thread as you scroll down and climbs back up. */
+/* Clip box starts below the header so the thread begins where the web does. */
+.theme-spider-clip {
+	position: fixed;
+	top: 80px;
+	right: 0;
+	bottom: 0;
+	width: 240px;
+	overflow: hidden;
+	z-index: 1001;
+}
+
+.theme-spider {
+	position: absolute;
+	top: 70px;
+	right: 96px;
+	transform: translateY(var(--spider-y, 0px));
+	transition: transform 0.6s ease-out;
+}
+
+/* Idle sway so it never looks frozen. */
+.theme-spider__swing {
+	transform-origin: 50% 0;
+	animation: theme-spider-sway 5s ease-in-out infinite;
+}
+
+.theme-spider__svg {
+	/* base.css hides every bare <svg> (opacity 0, absolute, 100% wide) */
+	display: block;
+	position: static;
+	opacity: 1;
+	width: 44px;
+	height: 44px;
+}
+
+.theme-spider__thread {
+	position: absolute;
+	left: 50%;
+	bottom: 100%;
+	width: 1px;
+	height: 600px;
+	background: rgba(245, 241, 223, 0.45);
+}
+
+.theme-spider__legs {
+	fill: none;
+	stroke: #f5f1df;
+	stroke-width: 2;
+	stroke-linecap: round;
+}
+
+.theme-spider__body {
+	fill: #2b2b2b;
+	stroke: #f5f1df;
+	stroke-width: 1.8;
+}
+
+.theme-spider__eye {
+	fill: #ff006f;
+}
+
+@keyframes theme-spider-sway {
+	0%, 100% { transform: rotate(-4deg); }
+	50% { transform: rotate(4deg); }
+}
+
+@media screen and (max-width: 768px) {
+	.theme-web {
+		width: 110px;
+		height: 110px;
+		opacity: 0.3;
+	}
+
+	.theme-spider {
+		right: 72px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.theme-spider {
+		transition: none;
+	}
+
+	.theme-spider__swing {
+		animation: none;
+	}
+}

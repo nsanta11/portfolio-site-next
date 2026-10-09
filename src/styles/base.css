@@ -318,6 +318,7 @@ header.frame {
 .about-card,
 .contact-card {
 	position: relative;
+	margin-top: -100px;
 	background-color: #000000;
 	color: #000000;
 	overflow: hidden;
