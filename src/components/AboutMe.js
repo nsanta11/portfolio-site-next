@@ -4,7 +4,7 @@ export default function AboutMe() {
     <section className="layout-wrapper left" id="about-me">
       <div className="flex-container about-card">
         <div className="image-container">
-          <img src="img/nicole_toni.jpg" alt="Nicole Santarsiero Headshot" />
+          <img src="img/nicole_toni.jpg" alt="Nicole Santarsiero smiling and holding her rescue dog, Toni" />
         </div>
         <div className="text-container">
           <h2>About Me</h2>

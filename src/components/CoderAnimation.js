@@ -10,7 +10,7 @@ export default function CoderAnimation() {
 
   return (
     <section className="coder content">
-      <svg>
+      <svg aria-hidden="true">
         <clipPath id="clip-1" ref={svgRef}>
             {Array.from({ length: 36 }, (_, i) => (
               <text

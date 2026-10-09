@@ -29,8 +29,9 @@ export default function Navbar() {
           href="https://www.linkedin.com/in/nicole-santarsiero-81443752"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Nicole Santarsiero on LinkedIn (opens in a new tab)"
         >
-          <i className="devicon-linkedin-plain colored"></i>
+          <i className="devicon-linkedin-plain colored" aria-hidden="true"></i>
         </Link>
       </div>
       <button
