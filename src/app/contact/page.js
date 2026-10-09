@@ -16,7 +16,7 @@ export default function ContactSection() {
       <div className="layout-wrapper">
         <div className="flex-container contact-card" id="contact-me">
           <div className="image-container">
-            <img src="/img/nic.png" alt="Circular Portrait" />
+            <img src="/img/nicole_toni.jpg" alt="Circular Portrait" />
           </div>
           <section className="contact-section">
             <h2>Contact Me</h2>
