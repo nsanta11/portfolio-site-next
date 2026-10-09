@@ -2,15 +2,12 @@
 *::after,
 *::before {
 	box-sizing: border-box;
-}
+} 
 
 :root {
 	font-size: 16px;
-	/* --color-text: #f3f3f3; */
 	--color-text: #f5f1df;
 	--color-bg: #000000;
-	--color-link: #f3f3f3;
-	/* --color-link-hover: rgb(255, 0, 111); */
 	--color-accent: #64eda6;
 	--color-link-hover: #FF006F;
 	--page-padding: 32px 48px;
@@ -47,7 +44,7 @@ main {
 
 a {
 	text-decoration: none;
-	color: var(--color-link);
+	color: var(--color-text);
 	outline: none;
 	cursor: pointer;
 }
