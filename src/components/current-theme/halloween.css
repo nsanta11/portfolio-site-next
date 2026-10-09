@@ -9,10 +9,10 @@
 	position: absolute;
 	top: 80px;
 	right: 0;
-	width: 160px;
-	height: 160px;
+	width: 375px;
+	height: 375px;
 	z-index: 1001;
-	opacity: 0.35;
+	opacity: 0.65;
 	/* fade the strands out toward the web's outer edge */
 	-webkit-mask-image: radial-gradient(circle farthest-side at 100% 0, #000 20%, transparent 100%);
 	mask-image: radial-gradient(circle farthest-side at 100% 0, #000 20%, transparent 100%);
@@ -20,7 +20,7 @@
 
 .theme-web path {
 	stroke: #f5f1df;
-	stroke-width: 1;
+	stroke-width: 0.5;
 	stroke-linecap: round;
 }
 
@@ -56,8 +56,8 @@
 	display: block;
 	position: static;
 	opacity: 1;
-	width: 44px;
-	height: 44px;
+	width: 34px;
+	height: 34px;
 }
 
 .theme-spider__thread {
@@ -93,13 +93,18 @@
 
 @media screen and (max-width: 768px) {
 	.theme-web {
-		width: 110px;
-		height: 110px;
-		opacity: 0.3;
+		width: 210px;
+		height: 210px;
+		opacity: 0.6;
 	}
 
 	.theme-spider {
-		right: 72px;
+		right: 54px;
+	}
+
+	.theme-spider__svg {
+		width: 24px;
+		height: 24px;
 	}
 }
 
