@@ -32,21 +32,37 @@ const ringPaths = RINGS.map((r) => {
 
 const MAX_DROP = 260; // px the spider can lower itself
 const DROP_PER_SCROLL = 0.2; // px of drop per px scrolled
+const EASE = 0.12; // 0-1, lower = floatier follow
 
 export default function Halloween() {
   const spiderRef = useRef(null);
 
   useEffect(() => {
+    const el = spiderRef.current;
+    if (!el) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let current = 0;
     let frame = 0;
-    const update = () => {
-      frame = 0;
-      const y = Math.min(window.scrollY * DROP_PER_SCROLL, MAX_DROP);
-      spiderRef.current?.style.setProperty("--spider-y", `${y}px`);
+
+    const target = () => Math.min(window.scrollY * DROP_PER_SCROLL, MAX_DROP);
+    const render = () => {
+      el.style.transform = `translate3d(0, ${current.toFixed(2)}px, 0)`;
+    };
+
+    // Ease toward the scroll position every frame. Mobile scroll events are
+    // bursty, so following a smoothed value avoids visible stepping.
+    const tick = () => {
+      const goal = target();
+      current = reduce ? goal : current + (goal - current) * EASE;
+      render();
+      frame = Math.abs(goal - current) > 0.1 ? requestAnimationFrame(tick) : 0;
     };
     const onScroll = () => {
-      if (!frame) frame = requestAnimationFrame(update);
+      if (!frame) frame = requestAnimationFrame(tick);
     };
-    update();
+
+    current = target();
+    render();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);

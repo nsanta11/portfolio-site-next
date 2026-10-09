@@ -24,8 +24,8 @@
 	stroke-linecap: round;
 }
 
-/* Fixed to the viewport. JS sets --spider-y from the scroll position, so the
-   spider lowers itself on its thread as you scroll down and climbs back up. */
+/* JS eases the spider's translateY toward the scroll position, so it lowers
+   itself on its thread as you scroll down and climbs back up. */
 /* Clip box starts below the header so the thread begins where the web does. */
 .theme-spider-clip {
 	position: fixed;
@@ -41,13 +41,13 @@
 	position: absolute;
 	top: 70px;
 	right: 96px;
-	transform: translateY(var(--spider-y, 0px));
-	transition: transform 0.6s ease-out;
+	will-change: transform;
 }
 
 /* Idle sway so it never looks frozen. */
 .theme-spider__swing {
 	transform-origin: 50% 0;
+	will-change: transform;
 	animation: theme-spider-sway 5s ease-in-out infinite;
 }
 
@@ -109,10 +109,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.theme-spider {
-		transition: none;
-	}
-
 	.theme-spider__swing {
 		animation: none;
 	}
