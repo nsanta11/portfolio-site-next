@@ -209,7 +209,7 @@ header.frame {
 	border: none;
 	cursor: pointer;
 	padding: 16px 24px;
-	margin: 24px 0;
+	margin: 12px 0;
 	background-color: var(--color-link-hover);
 	font-size: 14px;
 	font-weight: 700;
@@ -640,7 +640,7 @@ video {
 label {
 	font-family: "Montserrat", sans-serif;
 	display: block;
-	margin: 12px 0 8px 0;
+	margin: 10px 0 4px 0;
 }
 
 input,
