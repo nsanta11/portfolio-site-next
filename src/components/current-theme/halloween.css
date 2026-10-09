@@ -30,10 +30,11 @@
 .theme-spider-clip {
 	position: fixed;
 	top: 80px;
+	left: 0;
 	right: 0;
 	bottom: 0;
-	width: 240px;
 	overflow: hidden;
+	pointer-events: none;
 	z-index: 1001;
 }
 
@@ -41,7 +42,28 @@
 	position: absolute;
 	top: 70px;
 	right: 96px;
+	transform-origin: 50% 0;
 	will-change: transform;
+	pointer-events: auto;
+	cursor: grab;
+	touch-action: none;
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+/* Larger invisible grab area around the small spider. */
+.theme-spider::after {
+	content: "";
+	position: absolute;
+	inset: -12px;
+}
+
+.theme-spider.is-dragging {
+	cursor: grabbing;
+}
+
+.theme-spider.is-dragging .theme-spider__swing {
+	animation-play-state: paused;
 }
 
 /* Idle sway so it never looks frozen. */
@@ -61,11 +83,12 @@
 }
 
 .theme-spider__thread {
+	/* left, height and rotation are set from JS; anchored at the box top */
 	position: absolute;
-	left: 50%;
-	bottom: 100%;
+	top: 0;
 	width: 1px;
-	height: 600px;
+	margin-left: -0.5px;
+	transform-origin: 50% 0;
 	background: rgba(245, 241, 223, 0.45);
 }
 

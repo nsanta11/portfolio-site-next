@@ -32,40 +32,120 @@ const ringPaths = RINGS.map((r) => {
 
 const MAX_DROP = 260; // px the spider can lower itself
 const DROP_PER_SCROLL = 0.2; // px of drop per px scrolled
-const EASE = 0.12; // 0-1, lower = floatier follow
+const EASE = 0.12; // 0-1, lower = floatier scroll follow
+const SPRING = 0.06; // pull back toward rest after a drag
+const DAMPING = 0.9; // 0-1, lower = less swing after release
 
 export default function Halloween() {
   const spiderRef = useRef(null);
+  const threadRef = useRef(null);
 
   useEffect(() => {
     const el = spiderRef.current;
-    if (!el) return;
+    const thread = threadRef.current;
+    if (!el || !thread) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let current = 0;
+
+    let drop = 0; // scroll-driven rest offset
+    let px = 0; // drag offset from rest
+    let py = 0;
+    let vx = 0;
+    let vy = 0;
+    let dragging = false;
+    let grabX = 0;
+    let grabY = 0;
     let frame = 0;
 
     const target = () => Math.min(window.scrollY * DROP_PER_SCROLL, MAX_DROP);
+
+    // The thread is anchored at the top of the box, directly above the
+    // spider's resting spot, and always ends at the spider's head.
     const render = () => {
-      el.style.transform = `translate3d(0, ${current.toFixed(2)}px, 0)`;
+      const anchorX = el.offsetLeft + el.offsetWidth / 2;
+      const headY = el.offsetTop + drop + py;
+      const angle = -Math.atan2(px, headY);
+      thread.style.left = `${anchorX}px`;
+      thread.style.height = `${Math.hypot(px, headY).toFixed(1)}px`;
+      thread.style.transform = `rotate(${angle}rad)`;
+      el.style.transform = `translate3d(${px.toFixed(1)}px, ${(drop + py).toFixed(1)}px, 0) rotate(${angle}rad)`;
     };
 
-    // Ease toward the scroll position every frame. Mobile scroll events are
-    // bursty, so following a smoothed value avoids visible stepping.
     const tick = () => {
       const goal = target();
-      current = reduce ? goal : current + (goal - current) * EASE;
+      drop = reduce ? goal : drop + (goal - drop) * EASE;
+
+      if (!dragging) {
+        if (reduce) {
+          px = py = vx = vy = 0;
+        } else {
+          vx = (vx - px * SPRING) * DAMPING;
+          vy = (vy - py * SPRING) * DAMPING;
+          px += vx;
+          py += vy;
+        }
+      }
       render();
-      frame = Math.abs(goal - current) > 0.1 ? requestAnimationFrame(tick) : 0;
+
+      const moving =
+        dragging ||
+        Math.abs(goal - drop) > 0.1 ||
+        Math.abs(px) + Math.abs(py) > 0.1 ||
+        Math.abs(vx) + Math.abs(vy) > 0.05;
+      frame = moving ? requestAnimationFrame(tick) : 0;
     };
-    const onScroll = () => {
+    const kick = () => {
       if (!frame) frame = requestAnimationFrame(tick);
     };
 
-    current = target();
+    const onDown = (e) => {
+      dragging = true;
+      grabX = e.clientX - px;
+      grabY = e.clientY - py;
+      el.setPointerCapture(e.pointerId);
+      el.classList.add("is-dragging");
+      kick();
+    };
+    const onMove = (e) => {
+      if (!dragging) return;
+      const parent = el.offsetParent;
+      const w = el.offsetWidth;
+      const h = el.offsetHeight;
+      // keep the spider inside the visible area under the header
+      const minX = -el.offsetLeft;
+      const maxX = parent.clientWidth - el.offsetLeft - w;
+      const minY = -el.offsetTop - drop;
+      const maxY = parent.clientHeight - el.offsetTop - drop - h;
+      const nx = Math.min(Math.max(e.clientX - grabX, minX), maxX);
+      const ny = Math.min(Math.max(e.clientY - grabY, minY), maxY);
+      vx = nx - px;
+      vy = ny - py;
+      px = nx;
+      py = ny;
+      kick();
+    };
+    const onUp = (e) => {
+      if (!dragging) return;
+      dragging = false;
+      if (el.hasPointerCapture(e.pointerId)) el.releasePointerCapture(e.pointerId);
+      el.classList.remove("is-dragging");
+      kick();
+    };
+
+    drop = target();
     render();
-    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", kick, { passive: true });
+    window.addEventListener("resize", kick);
+    el.addEventListener("pointerdown", onDown);
+    el.addEventListener("pointermove", onMove);
+    el.addEventListener("pointerup", onUp);
+    el.addEventListener("pointercancel", onUp);
     return () => {
-      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scroll", kick);
+      window.removeEventListener("resize", kick);
+      el.removeEventListener("pointerdown", onDown);
+      el.removeEventListener("pointermove", onMove);
+      el.removeEventListener("pointerup", onUp);
+      el.removeEventListener("pointercancel", onUp);
       cancelAnimationFrame(frame);
     };
   }, []);
@@ -83,8 +163,8 @@ export default function Halloween() {
       </svg>
 
       <div className="theme-spider-clip">
+      <span className="theme-spider__thread" ref={threadRef}></span>
       <div className="theme-spider" ref={spiderRef}>
-        <span className="theme-spider__thread"></span>
         <div className="theme-spider__swing">
         <svg className="theme-spider__svg" viewBox="0 0 40 40">
           <g className="theme-spider__legs">
