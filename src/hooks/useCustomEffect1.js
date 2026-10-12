@@ -28,6 +28,13 @@ export const useCustomEffect1 = (svgRef) => {
       return;
     }
 
+    // Mobile: skip the scroll animation and show its end state.
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      gsap.set(clipPaths, { xPercent: -120 });
+      gsap.set(texts, { xPercent: 0, rotation: 0 });
+      return;
+    }
+
     const imageUrls = [
       "img/cartoon_comp.png",
       "img/cartoon_comp.png",
