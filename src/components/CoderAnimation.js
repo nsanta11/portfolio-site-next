@@ -15,7 +15,7 @@ export default function CoderAnimation() {
             {Array.from({ length: 36 }, (_, i) => (
               <text
                 key={i}
-                x={`${1.6 + i * 0.18}em`}
+                x={`${1.4 + i * 0.18}em`}
                 y="0.8em"
                 className="line-1 font-1 size-3"
               >
