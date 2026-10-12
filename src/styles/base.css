@@ -14,7 +14,7 @@
 }
 
 ::selection {
-	background-color: var(--color-link-hover);
+	background-color: var(--color-accent);
 	color: #000;
 }
 
@@ -66,8 +66,15 @@ button:hover {
 
 h2 {
 	font-size: 32px;
-	margin: 16px 0;
-	color: var(--color-accent);
+	margin: 0 0 16px;
+	color: var(--color-text);
+}
+
+/* "Recent Projects": larger heading with a short, clean rule beneath it */
+#my-work {
+	font-size: 40px;
+	letter-spacing: 0.01em;
+	/* background: linear-gradient(var(--color-text), var(--color-text)) bottom center / 56px 3px no-repeat; */
 }
 
 @font-face {
@@ -310,7 +317,7 @@ header.frame {
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 1);
 }
 
-.about-card::before {
+.contact-card::before {
 	content: "";
 	position: absolute;
 	inset: -40px;
@@ -325,9 +332,56 @@ header.frame {
 	z-index: 1;
 }
 
+/* About Me as a cream postcard, matching the project cards. Scoped to
+   .flex-container.about-card so the contact page (which also uses .about-card
+   on its wrapper) is unaffected. */
+.flex-container.about-card {
+	padding: 16px;
+	border-radius: 2px;
+	background:
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.38 0 0 0 0 0.25 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E"),
+		linear-gradient(145deg, #fefdf8 0%, #fbf8ec 45%, #f1ecd9 100%);
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.8),
+		inset 0 -2px 3px rgba(120, 100, 60, 0.18),
+		0 1px 2px rgba(0, 0, 0, 0.5),
+		0 6px 14px rgba(0, 0, 0, 0.55);
+}
+
+/* same grain + scanlines as the poster and project cards, replacing the blurred photo */
+.flex-container.about-card::before {
+	inset: 0;
+	border-radius: inherit;
+	pointer-events: none;
+	background:
+		repeating-linear-gradient(
+			0deg,
+			rgba(0, 0, 0, 0.12) 0,
+			rgba(0, 0, 0, 0.12) 1px,
+			transparent 1px,
+			transparent 3px
+		),
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+	background-size: auto, 200px 200px;
+	mix-blend-mode: overlay;
+	opacity: 0.95;
+	filter: none;
+}
+
+.flex-container.about-card h2 {
+	color: #2a2420;
+}
+
+.flex-container.about-card .text-container p {
+	color: #2a2420;
+}
+
+.flex-container.about-card .colored {
+	color: #2a2420 !important;
+}
+
 .text-container {
 	flex: 2;
-	/* margin: 16px 0 */
 }
 
 .text-container p {
@@ -407,6 +461,32 @@ header.frame {
 	background-position: 50% 50%;
 }
 
+/* Film grain + faint scanlines over the poster image. The fine texture pulls
+   the eye off the softness of the source photo. Child of the clipped .poster,
+   so it only shows inside the letters. */
+.poster {
+	position: relative;
+}
+
+.poster::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background:
+		repeating-linear-gradient(
+			0deg,
+			rgba(0, 0, 0, 0.12) 0,
+			rgba(0, 0, 0, 0.12) 1px,
+			transparent 1px,
+			transparent 3px
+		),
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+	background-size: auto, 200px 200px;
+	mix-blend-mode: overlay;
+	opacity: 0.95;
+}
+
 .font-1 {
 	font-family: "blackoutregular";
 	font-weight: 400;
@@ -445,6 +525,24 @@ svg text {
 	grid-template-columns: repeat(3, 350px);
 }
 
+/* polaroid frame: stays put, like a card glued down. Only the photo inside lifts. */
+.card__frame {
+	position: relative;
+	margin-top: 24px; /* room for the tape above, clear of the title */
+	padding: 28px 10px;
+	border-radius: 2px;
+	/* postcard stock: warm paper with a faint fiber grain and a soft sheen */
+	background:
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.38 0 0 0 0 0.25 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E"),
+		linear-gradient(145deg, #fefdf8 0%, #fbf8ec 45%, #f1ecd9 100%);
+	/* thin lit edge on top, shaded edge below, then layered drop shadows */
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.8),
+		inset 0 -2px 3px rgba(120, 100, 60, 0.18),
+		0 1px 2px rgba(0, 0, 0, 0.5),
+		0 6px 14px rgba(0, 0, 0, 0.55);
+}
+
 .card__image {
 	display: block;
 	background-size: cover;
@@ -452,13 +550,99 @@ svg text {
 	width: 100%;
 	height: auto;
 	aspect-ratio: 5 / 3;
-	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.75);
+	position: relative;
+	z-index: 1;
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Same texture as the hero poster (.poster::after): film grain plus faint
+   scanlines, overlay-blended. Covers the cream only; the photo
+   (.card__image, z-index 1) sits above it. */
+.card__frame::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	pointer-events: none;
+	background:
+		repeating-linear-gradient(
+			0deg,
+			rgba(0, 0, 0, 0.12) 0,
+			rgba(0, 0, 0, 0.12) 1px,
+			transparent 1px,
+			transparent 3px
+		),
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+	background-size: auto, 200px 200px;
+	mix-blend-mode: overlay;
+	opacity: 0.95;
+}
+
+/* washi tape: shared look, color set per use via --tape-rgb */
+.card__frame::before,
+.poster__inner::before,
+.poster__inner::after {
+	content: "";
+	position: absolute;
+	pointer-events: none;
+	--tape-rgb: 255, 0, 111;
+	background: repeating-linear-gradient(
+		135deg,
+		rgba(var(--tape-rgb), 0.65) 0,
+		rgba(var(--tape-rgb), 0.65) 6px,
+		rgba(var(--tape-rgb), 0.5) 6px,
+		rgba(var(--tape-rgb), 0.5) 12px
+	);
+	clip-path: polygon(0 0, 4% 15%, 0 30%, 4% 50%, 0 70%, 4% 85%, 0 100%, 100% 100%, 96% 85%, 100% 70%, 96% 50%, 100% 30%, 96% 15%, 100% 0);
+}
+
+/* across the top edge of each project frame */
+.card__frame::before {
+	z-index: 2;
+	top: -12px;
+	left: 50%;
+	width: 72px;
+	height: 20px;
+	margin-left: -36px;
+	transform: rotate(-3deg);
+}
+
+.card:nth-child(even) .card__frame::before {
+	--tape-rgb: 100, 237, 166;
+	transform: rotate(3deg);
+}
+
+/* hero poster: two subtle strips on opposite corners. They live on
+   .poster__inner so they're part of the image: clipped by the letter mask and
+   moving with it, instead of floating over the empty gaps. */
+.poster__inner {
+	position: relative;
+}
+
+.poster__inner::before,
+.poster__inner::after {
+	z-index: 1;
+	width: 96px;
+	height: 26px;
+	opacity: 0.6;
+}
+
+.poster__inner::before {
+	top: 48px;
+	left: 40px;
+	transform: rotate(-38deg);
+}
+
+.poster__inner::after {
+	--tape-rgb: 100, 237, 166;
+	bottom: 48px;
+	right: 40px;
+	transform: rotate(-38deg);
 }
 
 .card__image:hover {
 	transform: translateY(-5px);
-	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.25);
 }
 
 .card__image .caption {
@@ -479,7 +663,6 @@ svg text {
 	pointer-events: none;
 	text-align: center;
 	padding: 16px;
-	box-shadow: 0 8px 16px rgba(0, 0, 0, 1);
 	text-transform: capitalize;
 }
 
@@ -492,20 +675,25 @@ svg text {
 }
 
 .card__title {
+	font-family: "Montserrat", sans-serif;
 	font-weight: normal;
+	text-align: center;
 	font-size: 20px;
 	margin-top: 10px;
+	min-height: 52px;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
 }
 
-.card p {
-	font-size: 22px;
+/* .card p {
 	min-height: 80px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
 	line-height: 1.05;
-}
+} */
 
 /* Modal box styles */
 .modal {
@@ -596,6 +784,7 @@ video {
 	width: 100%;
 	display: flex;
 	justify-content: center;
+	margin-top: 16px;
 	color: #000000;
 }
 
@@ -730,7 +919,6 @@ textarea {
 
 	.card-wrap {
 		grid-template-columns: 1fr;
-		/* margin: 40px 16px 0 16px; */
 		width: 100%;
 		padding: 0 32px;
 	}
@@ -844,6 +1032,10 @@ textarea {
 
 	.poster--half {
 		height: 180px;
+	}
+
+	#my-work {
+		font-size: 32px;
 	}
 
 	.text-container p {

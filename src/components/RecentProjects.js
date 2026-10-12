@@ -25,28 +25,30 @@ export default function RecentProjects() {
                 </Fragment>
               ))}
             </p>
-            {project.opensModal ? (
-              <button
-                className="card__image openModal"
-                id="openModalBtn"
-                aria-label={`${project.title} – ${project.caption}`}
-                style={{ backgroundImage: `url("${project.image}")` }}
-                onClick={() => setIsModalOpen(true)}
-              >
-                <span className="caption">{project.caption}</span>
-              </button>
-            ) : (
-              <a
-                href={project.href}
-                className="card__image"
-                aria-label={`${project.title} – ${project.caption} (opens in a new tab)`}
-                style={{ backgroundImage: `url("${project.image}")` }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="caption">{project.caption}</span>
-              </a>
-            )}
+            <div className="card__frame">
+              {project.opensModal ? (
+                <button
+                  className="card__image openModal"
+                  id="openModalBtn"
+                  aria-label={`${project.title} – ${project.caption}`}
+                  style={{ backgroundImage: `url("${project.image}")` }}
+                  onClick={() => setIsModalOpen(true)}
+                >
+                  <span className="caption">{project.caption}</span>
+                </button>
+              ) : (
+                <a
+                  href={project.href}
+                  className="card__image"
+                  aria-label={`${project.title} – ${project.caption} (opens in a new tab)`}
+                  style={{ backgroundImage: `url("${project.image}")` }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="caption">{project.caption}</span>
+                </a>
+              )}
+            </div>
           </div>
         ))}
       </div>

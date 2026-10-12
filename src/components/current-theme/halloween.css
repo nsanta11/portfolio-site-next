@@ -136,3 +136,23 @@
 		animation: none;
 	}
 }
+
+/* ---- Halloween washi tape ----
+   Overrides the default pink/mint tape from base.css. Remove this block (or
+   switch the theme off) and the tape goes back to normal. The leading `html`
+   just wins the specificity tie with base.css. */
+html .card__frame::before,
+html .poster__inner::before {
+	/* orange with little black bats */
+	background:
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'%3E%3Cpath d='M3 12Q6 5 10 11Q12 8 14 11Q18 5 21 12Q17 10 12 17Q7 10 3 12Z' fill='%23140018'/%3E%3C/svg%3E") 0 0 / 20px 20px,
+		rgba(255, 122, 0, 0.85);
+}
+
+html .card:nth-child(even) .card__frame::before,
+html .poster__inner::after {
+	/* purple with tiny star dots */
+	background:
+		radial-gradient(circle, rgba(255, 255, 255, 0.7) 1.2px, transparent 1.8px) 0 0 / 10px 10px,
+		rgba(118, 48, 200, 0.85);
+}
