@@ -30,13 +30,14 @@ export default function CoderAnimation() {
         style={{
           clipPath: "url(#clip-1)",
           "--offset-x": "0%",
-          "--offset-y": "6%",
+          "--offset-y": "0%",
         }}
       >
         <div
           className="poster__inner"
           style={{
-            backgroundImage: 'url("/img/hero_collage.jpg")',
+            backgroundImage: 'url("/img/hero_collage.jpg")',  
+            opacity: 0.8
           }}
         ></div>
       </div>
