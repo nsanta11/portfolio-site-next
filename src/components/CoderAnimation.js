@@ -21,7 +21,7 @@ export default function CoderAnimation() {
     <section className="coder content">
       <svg aria-hidden="true">
         <clipPath id="clip-1" ref={svgRef}>
-            {Array.from({ length: 36 }, (_, i) => (
+            {Array.from({ length: 38 }, (_, i) => (
               <text
                 key={i}
                 x={`${startX + i * 0.18}em`}
