@@ -1,10 +1,19 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useCustomEffect1 } from "@/hooks/useCustomEffect1";
 
 export default function CoderAnimation() {
   const svgRef = useRef(null);
+  const [startX, setStartX] = useState(1.2);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    const update = () => setStartX(mq.matches ? 0.6 : 1.2);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   useCustomEffect1(svgRef);
 
@@ -15,7 +24,7 @@ export default function CoderAnimation() {
             {Array.from({ length: 36 }, (_, i) => (
               <text
                 key={i}
-                x={`${1.2 + i * 0.18}em`}
+                x={`${startX + i * 0.18}em`}
                 y="0.9em"
                 className="line-1 font-1 size-3"
               >
@@ -30,7 +39,7 @@ export default function CoderAnimation() {
         style={{
           clipPath: "url(#clip-1)",
           "--offset-x": "0%",
-          "--offset-y": "0%",
+          "--offset-y": "4%",
         }}
       >
         <div
