@@ -246,7 +246,8 @@ header.frame {
 }
 
 .title button:hover,
-.send:hover {
+.send:hover,
+.not-found__link:hover {
 	background-color: var(--color-link-hover);
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 	transition: background-color 0.75s ease;
@@ -1051,4 +1052,58 @@ textarea {
 		display: block;
 	}
 
+}
+/* 404 page: a cream postcard (reuses .card__frame) on the dark background */
+.not-found {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 70vh;
+	padding: 80px 16px;
+}
+
+.not-found__card {
+	max-width: 520px;
+	width: 100%;
+	padding: 40px 32px 44px;
+	text-align: center;
+	color: #2a2a2a;
+	transform: rotate(-1.5deg);
+}
+
+.not-found__card h1 {
+	margin: 0 0 16px;
+	font-size: 32px;
+	color: #1a1a1a;
+}
+
+.not-found__card p {
+	margin: 0 0 24px;
+	font-family: "Montserrat", sans-serif;
+	font-size: 18px;
+	line-height: 1.5;
+	color: #2a2a2a;
+}
+
+.not-found__card .not-found__code {
+	margin: 0 0 8px;
+	font-size: 96px;
+	line-height: 1;
+	color: #1a1a1a;
+}
+
+/* position + z-index lift the button above the card's texture overlay (::after) */
+.not-found__link {
+	position: relative;
+	z-index: 3;
+	display: inline-block;
+	font-family: system-ui, -apple-system, sans-serif; /* same default font as the home "MY WORK" button */
+	color: var(--color-bg);
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.not-found__link:hover {
+	color: var(--color-bg);
+	transform: none;
 }
