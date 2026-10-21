@@ -9,11 +9,15 @@ export default function AboutMe() {
         <div className="text-container">
           <h2>About Me</h2>
           <p>
-          Full stack developer with a background in digital marketing for creative agencies and nonprofits, and an MBA from UMass Boston. I’ve volunteered across Central America, partnering with community leaders on local initiatives. My love for travel led me to (almost) fluency in Spanish, and when I’m not coding, you’ll find me at concerts or spoiling my rescue pup, Toni.
+            I love bringing creative ideas to life, on and off the web. With 8+ years in web development and an MBA in Marketing from UMass Boston, I combine logic with creative thinking to build digital experiences that look great, work well, and make an impact.
           </p>
           <p>
-            <strong>Goal: </strong>To use my technical and creative skills in a role that supports meaningful, socially conscious work.
+            Outside of work, I’ve volunteered across Central America, traveled my way to (almost) fluency in Spanish, and can often be found at concerts or spoiling my rescue pup, Toni.
           </p>
+          <p>
+            My life motto? always. stay. curious.
+          </p>
+
 
           <div className="icon-wrapper">
             <i className="devicon-nodejs-plain colored"></i>
