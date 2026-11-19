@@ -1,0 +1,129 @@
+/* Winter theme: three paper snowflakes dangling on threads. Subtle,
+   non-interactive (except dragging a flake). */
+.theme-winter {
+	pointer-events: none;
+}
+
+.theme-flake__paper path,
+.theme-flake__paper polygon {
+	fill: #fbfdff;
+	stroke: #a9c9e6;
+	stroke-width: 0.8;
+	stroke-linejoin: round;
+}
+
+.theme-flake__paper .theme-flake__fold {
+	fill: #dcebf8;
+}
+
+.theme-flake-clip {
+	position: fixed;
+	top: 80px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden;
+	pointer-events: none;
+	z-index: 1001;
+}
+
+.theme-flake {
+	position: absolute;
+	top: 70px;
+	right: 96px;
+	transform-origin: 50% 0;
+	will-change: transform;
+	pointer-events: auto;
+	cursor: grab;
+	touch-action: none;
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+/* Larger invisible grab area around the small flake. */
+.theme-flake::after {
+	content: "";
+	position: absolute;
+	inset: -12px;
+}
+
+.theme-flake.is-dragging {
+	cursor: grabbing;
+}
+
+.theme-flake.is-dragging .theme-flake__swing {
+	animation-play-state: paused;
+}
+
+.theme-flake__swing {
+	transform-origin: 50% 0;
+	will-change: transform;
+	animation: theme-flake-sway 5s ease-in-out infinite;
+}
+
+/* Three flakes: different spots, sizes and sway timing. */
+.theme-flake--a { top: 70px; right: 40px; }
+.theme-flake--b { top: 30px; right: 100px; --flake-size: 34px; }
+.theme-flake--b .theme-flake__swing { animation-duration: 6.5s; animation-delay: -2s; }
+.theme-flake--c { top: 110px; right: 150px; --flake-size: 54px; }
+.theme-flake--c .theme-flake__swing { animation-duration: 7.5s; animation-delay: -4s; }
+
+.theme-flake__svg {
+	/* base.css hides every bare <svg> (opacity 0, absolute, 100% wide) */
+	display: block;
+	position: static;
+	opacity: 1;
+	width: var(--flake-size, 44px);
+	height: var(--flake-size, 44px);
+	filter: drop-shadow(0 1px 1.5px rgba(0, 0, 0, 0.5));
+}
+
+.theme-flake__thread {
+	/* left, height and rotation are set from JS; anchored at the box top */
+	position: absolute;
+	top: 0;
+	width: 1px;
+	margin-left: -0.5px;
+	transform-origin: 50% 0;
+	background: rgba(220, 235, 248, 0.55);
+}
+
+@keyframes theme-flake-sway {
+	0%, 100% { transform: rotate(-5deg); }
+	50% { transform: rotate(5deg); }
+}
+
+@media screen and (max-width: 768px) {
+	.theme-flake--a { right: 20px; --flake-size: 30px; }
+	/* one flake on mobile; hide the other two and their threads */
+	.theme-flake--b,
+	.theme-flake--c,
+	.theme-flake__thread.theme-flake--b,
+	.theme-flake__thread.theme-flake--c {
+		display: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.theme-flake__swing {
+		animation: none;
+	}
+}
+
+/* ---- Winter washi tape ----
+   Overrides the default tape from base.css, same as the Halloween block. */
+html:has(.theme-winter) .card__frame::before,
+html:has(.theme-winter) .poster__inner::before {
+	/* icy blue with little snowflake dots */
+	background:
+		radial-gradient(circle, rgba(255, 255, 255, 0.85) 1.4px, transparent 2px) 0 0 / 12px 12px,
+		rgba(126, 184, 230, 0.85);
+}
+
+html:has(.theme-winter) .card:nth-child(even) .card__frame::before,
+html:has(.theme-winter) .poster__inner::after {
+	/* white with pale-blue diagonal stripes */
+	background:
+		repeating-linear-gradient(45deg, rgba(169, 201, 230, 0.7) 0 3px, transparent 3px 8px),
+		rgba(255, 255, 255, 0.9);
+}

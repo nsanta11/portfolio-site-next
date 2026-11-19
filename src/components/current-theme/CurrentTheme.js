@@ -6,13 +6,14 @@
 // To remove entirely: set ACTIVE_THEME to null (or delete the <CurrentTheme />
 // line in app/layout.js plus this folder).
 import Halloween from "./Halloween";
+import Winter from "./Winter";
 
 const THEMES = {
   halloween: Halloween,
-  // christmas: Christmas,
+  winter: Winter,
 };
 
-const ACTIVE_THEME = "halloween";
+const ACTIVE_THEME = "winter";
 
 export default function CurrentTheme() {
   const Theme = THEMES[ACTIVE_THEME];
