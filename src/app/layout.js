@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Script from "next/script";
 import Loader from "@/components/Loader";
-import CurrentTheme from "@/components/current-theme/CurrentTheme";
+import CurrentTheme, { CurrentThemeScenery } from "@/components/current-theme/CurrentTheme";
 import { Instrument_Sans, Jost, Montserrat, Sixtyfour } from "next/font/google";
 import "../styles/base.css";
 
@@ -67,6 +67,7 @@ export default function RootLayout({ children }) {
         <CurrentTheme />
         <Navbar />
         <main>{children}</main>
+        <CurrentThemeScenery />
         <Footer />
       </body>
     </html>

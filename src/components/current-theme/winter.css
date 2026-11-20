@@ -127,3 +127,53 @@ html:has(.theme-winter) .poster__inner::after {
 		repeating-linear-gradient(45deg, rgba(169, 201, 230, 0.7) 0 3px, transparent 3px 8px),
 		rgba(255, 255, 255, 0.9);
 }
+
+/* ---- Winter scenery: snowy hills + pines above the footer ---- */
+.theme-scene {
+	position: relative;
+	height: 200px;
+	margin-top: -40px;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+/* base.css hides every bare <svg> (opacity 0, absolute, 100% wide, 100vh) */
+.theme-scene svg {
+	opacity: 1;
+	position: absolute;
+	overflow: visible;
+}
+
+.theme-scene .theme-scene__hills {
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* Trees scale with the viewport (full size at 1440px wide, never below half)
+   and are centred on --x, clamped so they never poke past either edge. */
+.theme-scene .theme-scene__tree {
+	--size: clamp(calc(var(--hn) * 0.5px), calc(var(--hn) / 14.4 * 1vw), calc(var(--hn) * 1px));
+	height: var(--size);
+	width: calc(var(--size) * 2 / 3);
+	bottom: var(--b);
+	left: clamp(
+		calc(var(--size) / 3 + 4px),
+		var(--x),
+		calc(100% - var(--size) / 3 - 4px)
+	);
+	transform: translateX(-50%);
+	filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.35));
+}
+
+@media screen and (max-width: 768px) {
+	.theme-scene {
+		height: 120px;
+		margin-top: -20px;
+	}
+
+	.theme-scene .theme-scene__tree--extra {
+		display: none;
+	}
+}
