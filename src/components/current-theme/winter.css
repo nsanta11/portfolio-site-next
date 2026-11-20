@@ -6,14 +6,14 @@
 
 .theme-flake__paper path,
 .theme-flake__paper polygon {
-	fill: #fbfdff;
-	stroke: #a9c9e6;
+	fill: #dce8f5;
+	stroke: #9db8d6;
 	stroke-width: 0.8;
 	stroke-linejoin: round;
 }
 
 .theme-flake__paper .theme-flake__fold {
-	fill: #dcebf8;
+	fill: #c3d6ea;
 }
 
 .theme-flake-clip {
